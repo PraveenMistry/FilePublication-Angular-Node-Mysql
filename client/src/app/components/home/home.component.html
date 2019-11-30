@@ -1,0 +1,21 @@
+
+<div class="container mt-5">
+    <h2>My Files</h2>
+    <p></p>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>CreatedAt</th>
+          <th>Open</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let file of files">
+          <td>{{file.name}}</td>
+          <td>{{file.createdAt}}</td>
+          <td><a class="btn btn-primary btn-sm" [routerLink]="['/public/file', file.name]">View</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

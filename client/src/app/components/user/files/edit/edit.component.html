@@ -1,0 +1,23 @@
+<div class="row mt-5">
+    <div class="col-md-6 mx-auto">
+        <h2 class="text-center">Edit Accessiblity <br>( File Name: {{paperName}} )</h2>
+        <div class="card mt-3">
+            <div class="card-body">
+              <div class="container">
+                <form [formGroup]="editForm" (ngSubmit)="submitForm()">
+                    <div class="form-group">
+                      <select class="custom-select form-control" formControlName="accessible">
+                          <option value="" disabled>Publicly Accessible</option>
+                          <option value="1">Yes</option>
+                          <option value="0">No</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary col-md-4" >Edit</button>
+                    </div>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>

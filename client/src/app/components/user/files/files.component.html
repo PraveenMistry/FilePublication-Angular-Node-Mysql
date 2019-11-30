@@ -1,0 +1,33 @@
+
+<div class="container mt-5">
+  <h2>My Files</h2>
+  <p></p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>CreatedAt</th>
+        <th>Accessible</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of files">
+        <td>{{file.name}}</td>
+        <td>{{file.createdAt}}</td>
+        <td>{{file.is_accessible==0?'No':'Yes'}}</td>
+        <td>
+          <a class="btn btn-warning btn-sm" (click)="updatePaper(file)">
+            Edit
+          </a>
+        </td>
+        <td>
+          <a class="btn btn-danger btn-sm" (click)="deletePaper(file)">
+            remove
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -4,12 +4,15 @@
   <p></p>
   <table class="table table-striped">
     <thead>
-      <tr>
+      <tr *ngIf="files != ''">
         <th>Name</th>
         <th>CreatedAt</th>
         <th>Accessible</th>
         <th>Edit</th>
         <th>Delete</th>
+      </tr>
+      <tr *ngIf="files == ''">
+        No flles added in your account, <a routerLink="/user/file/add">Click Here</a> to add file
       </tr>
     </thead>
     <tbody>

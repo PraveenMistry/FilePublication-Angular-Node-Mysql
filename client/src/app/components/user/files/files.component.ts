@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Paper } from 'src/app/models/Paper';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./files.component.css']
 })
 
-export class FilesComponent implements OnInit {
+export class FilesComponent implements OnInit, OnDestroy {
   public files: any;
 
   constructor(private apiService: ApiService, private router: Router) { }
@@ -17,6 +17,7 @@ export class FilesComponent implements OnInit {
   getAllFiles(){
     this.apiService.getFiles()
       .subscribe(res => {
+        console.log('result',res);
         this.files = res;
       }, err => {
         console.log(err);
@@ -37,6 +38,10 @@ export class FilesComponent implements OnInit {
 
   ngOnInit() {
     this.getAllFiles();
+  }
+
+  ngOnDestroy(){
+    this.files;
   }
 
 }

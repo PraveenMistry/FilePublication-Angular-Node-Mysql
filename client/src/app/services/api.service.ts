@@ -1,9 +1,7 @@
-import { User } from './../models/User';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import {BehaviorSubject} from "rxjs/internal/BehaviorSubject";
 import { Paper } from '../models/Paper';
 
 @Injectable({
@@ -11,23 +9,29 @@ import { Paper } from '../models/Paper';
 })
 
 export class ApiService {
-  public isLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public userLogged: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   public token = localStorage.getItem('accessToken');
   public papers : Paper;
 
-  headers: HttpHeaders = new HttpHeaders({
-    "Content-Type": "application/json",
-    "Authorization":this.token
-  });
+  // headers: HttpHeaders = new HttpHeaders({
+  //   "Content-Type": "application/json",
+  //   "Authorization": localStorage.getItem('accessToken')
+  // });
+
+  getCustomHeaders(): HttpHeaders {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('accessToken'));
+    return headers;
+  }
 
   constructor(private http: HttpClient) { }
 
   getFiles(): Observable<any> {
     const url_api = 'http://localhost:8080/file/get';
+    console.log("headers",this.getCustomHeaders());
     return this.http.get<Paper>(
       url_api,
-      {headers: this.headers}
+      {headers: this.getCustomHeaders()}
     ).pipe(map(data => data));
   }
 
@@ -42,7 +46,7 @@ export class ApiService {
     const url_api = 'http://localhost:8080/file/get/'+paperId;
     return this.http.get<Paper>(
       url_api,
-      {headers: this.headers}
+      {headers: this.getCustomHeaders()}
     ).pipe(map(data => data));
   }
 
@@ -54,7 +58,7 @@ export class ApiService {
       url_api,{
         accessible
       },
-      {headers: this.headers}
+      {headers: this.getCustomHeaders()}
     ).pipe(map(data => data));
   }
 
@@ -62,7 +66,7 @@ export class ApiService {
     const url_api = 'http://localhost:8080/file/delete/'+paperId;
     return this.http.delete<Paper>(
       url_api,
-      {headers: this.headers}
+      {headers: this.getCustomHeaders()}
     ).pipe(map(data => data));
   }
 

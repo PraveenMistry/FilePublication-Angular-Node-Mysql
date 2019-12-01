@@ -9,7 +9,7 @@ Database dump in database_schema directory
 Install all package   
 `npm i`  
 Run  
-`npm run dev`
+`nodemon server.js`
 
 ## Frontend - Angular
 

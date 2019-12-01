@@ -19,3 +19,8 @@ Install all package
 `npm i`  
 Run  
 `npm start`
+
+Screenshots:  
+
+Login  
+![ScreenShot](https://github.com/PraveenMistry/FilePublication-Angular-Node-Mysql/master/screenshots/login.png)

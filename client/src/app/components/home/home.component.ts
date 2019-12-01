@@ -10,7 +10,7 @@ import { Paper } from 'src/app/models/Paper';
 })
 export class HomeComponent implements OnInit {
   public files: any;
-
+  public fileCount : number;
   constructor(private apiService: ApiService, private router: Router) { }
 
 
@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
     this.apiService.getPublicFiles()
       .subscribe(res => {
         this.files = res;
+        this.fileCount = res.length;
       }, err => {
         console.log(err);
       });

@@ -35,12 +35,12 @@ export class NavbarComponent implements OnInit {
     PreloaderService.showPreloader();
     localStorage.removeItem('accessToken');
     localStorage.removeItem('currentUser');
-    this.router.navigate(['/user/login']);
+    localStorage.clear();
     this.authService.isLogged.next(false);
     this.authService.userLogged.next(null);
     PreloaderService.hidePreloader();
-
     // location.reload();
+    this.router.navigate(['/public/home']);
   }
 
   onCheckUserLogged(): void {

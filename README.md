@@ -23,4 +23,21 @@ Run
 Screenshots:  
 
 Login  
-![ScreenShot](https://github.com/PraveenMistry/FilePublication-Angular-Node-Mysql/master/screenshots/login.png)
+![ScreenShot](https://raw.githubusercontent.com/PraveenMistry/FilePublication-Angular-Node-Mysql/master/screenshots/login.png)
+
+Add file 
+
+![ScreenShot](https://raw.githubusercontent.com/PraveenMistry/FilePublication-Angular-Node-Mysql/master/screenshots/Add%20file.png)
+  
+My file 
+
+![ScreenShot](https://raw.githubusercontent.com/PraveenMistry/FilePublication-Angular-Node-Mysql/master/screenshots/my%20files.png)
+  
+Public View
+
+![ScreenShot](https://raw.githubusercontent.com/PraveenMistry/FilePublication-Angular-Node-Mysql/master/screenshots/public%20view.png)
+  
+Error
+
+![ScreenShot](https://raw.githubusercontent.com/PraveenMistry/FilePublication-Angular-Node-Mysql/master/screenshots/error.png)
+

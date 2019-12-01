@@ -1,11 +1,11 @@
-// import { ErrorIntercepterService } from './../../../services/error401/error-intercepter.service';
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../../models/User";
 import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
-// import { Location } from "@angular/common";
 import {PreloaderService} from "../../../services/preloader.service";
+import swal, { SweetAlertType } from 'sweetalert2';
+import { SweetAlert2 } from 'src/app/utilities/sweetalert2/sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -32,17 +32,25 @@ export class LoginComponent implements OnInit {
         .loginUser(this.user.email, this.user.password)
         .subscribe(
           (data: any) => {
-            let usr = data;
-            this.authService.setUser(usr);
-            const token = data.token;
-            this.authService.setToken(token);
-            this.authService.isLogged.next(true);
-            this.authService.userLogged.next(usr);
-            this.isError = false;
-            // location.reload();
-            PreloaderService.hidePreloader();
-            this.loading = false;
-            this.router.navigate(['/user/profile']);
+            if(data.status === 'success'){
+              let usr = data;
+              this.authService.setUser(usr);
+              const token = data.token;
+              this.authService.setToken(token);
+              this.authService.isLogged.next(true);
+              this.authService.userLogged.next(usr);
+              this.isError = false;
+              // location.reload();
+              PreloaderService.hidePreloader();
+              this.loading = false;
+              this.router.navigate(['/user/profile']);
+            }else{
+              SweetAlert2.showModalSweetAlert(data.message, "failed", "error");
+              this.isError = false;
+              PreloaderService.hidePreloader();
+              this.loading = false;
+              PreloaderService.hidePreloader();
+            }
           },
           error => {
             this.onMessage(error.message);
@@ -70,6 +78,14 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  showModalSweetAlert(title: string, text: string, type: SweetAlertType) {
+    swal({
+      title: title,
+      text: text,
+      type: type
+    });
   }
 
 }

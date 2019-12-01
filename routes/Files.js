@@ -77,9 +77,7 @@ files.post('/upload', upload.single('avatar'), (req, res, next) => {
 
 files.get('/get', function(req, res, next) {
   if(req.headers['authorization']){
-    console.log("token",req.headers['authorization'])
-    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
-    console.log("user",decoded.id);    
+    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)  
     File.findAll({
       where: {
         user_id: decoded.id
@@ -89,6 +87,7 @@ files.get('/get', function(req, res, next) {
         res.json(files)
       })
       .catch(err => {
+        console.log("error while get",err)
         res.send('error: ' + err)
       })
   }else{

@@ -33,7 +33,7 @@ CREATE TABLE `files` (
   UNIQUE KEY `files_unique` (`name`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `files_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,8 +42,10 @@ CREATE TABLE `files` (
 
 LOCK TABLES `files` WRITE;
 /*!40000 ALTER TABLE `files` DISABLE KEYS */;
+INSERT INTO `files` VALUES (4,'reactjs-lifecycle.png','uploads',1,4,'2019-12-01 10:05:17'),(5,'dummy.png','uploads',1,4,'2019-12-01 10:15:36'),(6,'simplified-jwt-auth-sequence.jpg','uploads',1,3,'2019-12-01 10:51:49');
 /*!40000 ALTER TABLE `files` ENABLE KEYS */;
 UNLOCK TABLES;
+
 --
 -- Table structure for table `users`
 --
@@ -81,4 +83,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-30 19:01:59
+-- Dump completed on 2019-12-01 16:31:34

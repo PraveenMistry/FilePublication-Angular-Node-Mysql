@@ -63,10 +63,10 @@ users.post('/login', (req, res) => {
                 })
                 res.json({ id:user.id, name:user.name, email:user.email ,token: token, status:"success" })
             }else{
-                res.send('Wrong Password!');
+                res.send({status:'failed',message:'Wrong Password!'});
             }
         } else {
-          res.status(400).json({error:'User does not exist'});
+          res.status(400).json({status:'success',message:'User does not exist'});
         }
       })
       .catch(err => {
@@ -85,7 +85,7 @@ users.get('/profile', (req, res) => {
       if (user) {
         res.json(user)
       } else {
-        res.send('User does not exist')
+        res.send({status:'failed',message:'User does not exist'})
       }
     })
     .catch(err => {
@@ -93,8 +93,7 @@ users.get('/profile', (req, res) => {
     })
 })
 
-
-
+// TODO
 users.put('/password', function(req, res, next) {
   if(req.headers['authorization']){
     if (!req.body.email && !req.body.password && !req.body.new_password && !req.body.confirm_password) {
